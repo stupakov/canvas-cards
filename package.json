@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "babel src/ --out-dir lib --watch",
-    "snowpack": "npx snowpack"
+    "snowpack": "npx snowpack",
+    "serve": "npx serve"
   },
   "author": "",
   "license": "ISC",
