@@ -1,9 +1,14 @@
+import { rgb } from '../common/colors.js'
+import { prepareCanvas, drawAt, drawRotated } from '../common/drawing.js'
+
 const identity = x => x
 const partial = (f = identity, ...x) => (...y) => f(...x, ...y)
 const withContext = ctx => fn => partial(fn, ctx)
 
 export default function (canvas) {
-  let { context, width, height } = prepareCanvas(canvas)
+  const width = 300
+  const height = 500
+  let context = prepareCanvas(canvas, width, height)
 
   // Backgrounds
   const bgcolor = rgb(0.7, 0.9, 1)
@@ -13,25 +18,6 @@ export default function (canvas) {
   // Draw some stuff
   withContext(context)(vignette)(width / 2, height / 2)
   withContext(context)(branches)(width / 2, height / 2)
-}
-
-function prepareCanvas (canvas) {
-  canvas.width = 600
-  canvas.height = 1000
-  canvas.style.width = '300px'
-  canvas.style.height = '500px'
-
-  let context = canvas.getContext('2d')
-  context.scale(2, 2)
-
-  let width = canvas.width / 2
-  let height = canvas.height / 2
-
-  return {
-    context,
-    width,
-    height
-  }
 }
 
 function vignette (context, centerX, centerY) {
@@ -113,16 +99,3 @@ const spiral = ({ context, strokeStyle, v, omega, segments }) => {
     context.stroke()
   }
 }
-
-const drawAt = (context, x, y, theta) => fn => {
-  context.save()
-  context.translate(x, y)
-  context.rotate(theta)
-  fn()
-  context.restore()
-}
-
-const drawRotated = (context, theta) => fn => drawAt(context, 0, 0, theta)(fn)
-
-const rgb = (r, g, b) => rgba(r, g, b, 1)
-const rgba = (r, g, b, a) => `rgb(${r * 255}, ${g * 255}, ${b * 255}, ${a})`
