@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "babel src/ --out-dir lib --watch",
     "snowpack": "npx snowpack",
-    "serve": "npx serve"
+    "servor": "npx servor . index.html 5000"
   },
   "author": "",
   "license": "ISC",
@@ -18,9 +18,11 @@
     "@babel/plugin-transform-react-jsx": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
+    "@material-ui/styles": "^4.9.0",
     "classnames-es": "^2.2.6",
     "react": "npm:@reactesm/react@^0.1.0",
     "react-dom": "npm:@reactesm/react-dom@^0.1.1",
+    "react-router-dom": "^5.1.2",
     "serve": "^11.3.0"
   },
   "devDependencies": {
