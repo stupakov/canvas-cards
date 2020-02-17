@@ -20,6 +20,7 @@
     "@babel/preset-react": "^7.7.4",
     "@material-ui/styles": "^4.9.0",
     "classnames-es": "^2.2.6",
+    "gsap": "^3.1.1",
     "react": "npm:@reactesm/react@^0.1.0",
     "react-dom": "npm:@reactesm/react-dom@^0.1.1",
     "react-router-dom": "^5.1.2",
