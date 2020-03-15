@@ -1,7 +1,7 @@
 import Color from 'color'
 
 const rgb = (r, g, b) => Color.rgb(fromRatio(r, g, b))
-const rgba = (r, g, b, a) => rgb(r, g, b).fade(a)
+const rgba = (r, g, b, a) => rgb(r, g, b).fade(1 - a)
 
 const fromRatio = (r, g, b) => [r * 255, g * 255, b * 255]
 
@@ -24,7 +24,9 @@ const gradients = [
       b = 0 + 0.25 * (i - 0.5) * 2
     }
     return rgb(r, g, b)
-  }
+  },
+
+  i => rgb(i, i, i)
 ]
 
 const geoNavy = Color('#00225e')
