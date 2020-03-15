@@ -8,7 +8,8 @@ import two from '../cards/2.js'
 import three from '../cards/3.js'
 import four from '../cards/4.js'
 import five from '../cards/5.js'
-import { draw as six, getInitialState, initAnimation } from '../cards/6.js'
+import six from '../cards/6.js'
+import stars from '../cards/8-stars.js'
 
 const App = () => (
   <Router>
@@ -19,11 +20,8 @@ const App = () => (
 
       <Route path='/'>
         <div class='gallery'>
-          <AnimatedCard
-            draw={six}
-            {...{ getInitialState, initAnimation }}
-            name='six'
-          />
+          <AnimatedCard {...stars} name='stars' />
+          <AnimatedCard {...six} name='six' />
           <CanvasCard fn={five} name='five' />
           <CanvasCard fn={four} name='four' />
           <CanvasCard fn={three} name='three' />

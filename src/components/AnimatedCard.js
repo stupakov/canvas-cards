@@ -9,7 +9,7 @@ const AnimatedCard = ({ draw, getInitialState, initAnimation, name }) => {
   const width = 300
   const height = 500
 
-  let state = getInitialState()
+  let state = getInitialState({ width, height })
 
   useEffect(() => {
     canvas = document.getElementById(name)

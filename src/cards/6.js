@@ -515,4 +515,4 @@ const dot = (context, centerX, centerY) => {
   context.fill()
 }
 
-export { draw, getInitialState, initAnimation }
+export default { draw, getInitialState, initAnimation }
