@@ -27,4 +27,14 @@ const gradients = [
   }
 ]
 
-export { rgb, rgba, gradients }
+const geoNavy = Color('#00225e')
+const geoGreen = Color('#005c0d')
+const geoGold = Color('#f7df00')
+const geoMaroon = Color('#4e067d')
+// const geoBlue = Color('00399c')
+
+const themes = {
+  geo: [geoNavy, geoGreen, geoGold, geoMaroon]
+}
+
+export { rgb, rgba, gradients, themes }
