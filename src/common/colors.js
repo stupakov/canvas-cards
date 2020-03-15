@@ -1,5 +1,9 @@
-const rgb = (r, g, b) => rgba(r, g, b, 1)
-const rgba = (r, g, b, a) => `rgb(${r * 255}, ${g * 255}, ${b * 255}, ${a})`
+import Color from 'color'
+
+const rgb = (r, g, b) => Color.rgb(fromRatio(r, g, b))
+const rgba = (r, g, b, a) => rgb(r, g, b).fade(a)
+
+const fromRatio = (r, g, b) => [r * 255, g * 255, b * 255]
 
 const gradients = [
   i => rgb(0.2 + i * 0.2, 0.9 - i, 1 - i * 0.7),

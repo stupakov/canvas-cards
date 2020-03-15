@@ -337,8 +337,8 @@ const draw = ({ context, width, height, state }) => {
   let opacity = 0.1 + 0.9 * introProgress
 
   // Backgrounds
-  // const bgcolor = rgba(0.9, 0.7, 1, 0.06)
-  const bgcolor = rgb(0.9, 0.7, 1)
+  // const bgcolor = rgba(0.9, 0.7, 1, 0.06).string()
+  const bgcolor = rgb(0.9, 0.7, 1).string()
   context.fillStyle = bgcolor
   context.fillRect(0, 0, width, height)
 
@@ -462,7 +462,7 @@ const gradientSphere = (
     0
   )(() => {
     for (let i = maxRadius; i > 0; i--) {
-      context.fillStyle = gradients[0](i / maxRadius)
+      context.fillStyle = gradients[0](i / maxRadius).string()
       let radius = i
       context.beginPath()
       context.arc(
@@ -482,8 +482,8 @@ const sphere = (context, centerX, centerY, radius = 20, opacity = 1) => {
   var initialAlpha = context.globalAlpha
   context.globalAlpha = opacity * initialAlpha
 
-  context.fillStyle = gradients[0](1)
-  context.strokeStyle = gradients[0](0)
+  context.fillStyle = gradients[0](1).string()
+  context.strokeStyle = gradients[0](0).string()
   context.strokeWidth = 10
   context.beginPath()
   context.arc(centerX, centerY, radius, 0, Math.PI * 2)
@@ -501,14 +501,14 @@ const line = (context, x0, y0, x1, y1) => {
     context.moveTo(x0, y0)
     context.lineTo(x1, y1)
     context.lineWidth = i
-    context.strokeStyle = rgba(0.7, 0.8, 1, 0.17)
+    context.strokeStyle = rgba(0.7, 0.8, 1, 0.17).string()
     context.lineCap = 'round'
     context.stroke()
   }
 }
 
 const dot = (context, centerX, centerY) => {
-  context.fillStyle = rgb(1, 0, 0)
+  context.fillStyle = rgb(1, 0, 0).string()
   let radius = 5
   context.beginPath()
   context.arc(centerX, centerY + radius * 0.3, radius, 0, Math.PI * 2)

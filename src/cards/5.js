@@ -7,7 +7,7 @@ export default function (canvas) {
   let context = prepareCanvas(canvas, width, height)
 
   // Backgrounds
-  const bgcolor = rgb(0.9, 0.7, 1)
+  const bgcolor = rgb(0.9, 0.7, 1).string()
   context.fillStyle = bgcolor
   context.fillRect(0, 0, width, height)
 
@@ -29,7 +29,7 @@ const sphere = (context, centerX, centerY) => {
     0
   )(() => {
     for (let i = maxRadius; i > 0; i--) {
-      context.fillStyle = gradients[0](i / maxRadius)
+      context.fillStyle = gradients[0](i / maxRadius).string()
       let radius = i
       context.beginPath()
       context.arc(
@@ -44,7 +44,7 @@ const sphere = (context, centerX, centerY) => {
   })
 }
 const dot = (context, centerX, centerY) => {
-  context.fillStyle = rgb(1, 0, 0)
+  context.fillStyle = rgb(1, 0, 0).string()
   let radius = 5
   context.beginPath()
   context.arc(centerX, centerY + radius * 0.3, radius, 0, Math.PI * 2)

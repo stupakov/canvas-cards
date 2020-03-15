@@ -30,27 +30,54 @@ function roundRect (ctx, x, y, width, height, radius, strokeStyle) {
   ctx.stroke()
 }
 
-const stroke1 = i => rgb(0, 0, 0)
+const stroke1 = i => rgb(0, 0, 0).string()
 const stroke2 = stroke1
 
 export default function (canvas) {
-  const width = 300
-  const height = 500
+  const width = 455
+  const height = width
   let context = prepareCanvas(canvas, width, height)
 
   // Backgrounds
-  const bgcolor = rgb(1, 1, 1)
+  const bgcolor = rgb(1, 1, 1).string()
   context.fillStyle = bgcolor
   context.fillRect(0, 0, width, height)
 
   // Draw some stuff
   branches(context, width / 2, height / 2)
 
-  for (let i = 1; i < 14; i++) {
-    roundRect(context, i, i, width - 2 * i, height - 2 * i, 40, rgb(0, 0, 0))
+  for (let i = 0; i < 5; i++) {
+    roundRect(
+      context,
+      i,
+      i,
+      width - 2 * i,
+      height - 2 * i,
+      40,
+      rgb(1, 1, 1).string()
+    )
+  }
+  for (let i = 5; i < 20; i++) {
+    roundRect(
+      context,
+      i,
+      i,
+      width - 2 * i,
+      height - 2 * i,
+      40,
+      rgb(0, 0, 0).string()
+    )
   }
   for (let i = -20; i < 1; i++) {
-    roundRect(context, i, i, width - 2 * i, height - 2 * i, 40, rgb(1, 1, 1))
+    roundRect(
+      context,
+      i,
+      i,
+      width - 2 * i,
+      height - 2 * i,
+      40,
+      rgb(1, 1, 1).string()
+    )
   }
 }
 

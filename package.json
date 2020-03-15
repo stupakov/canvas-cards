@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "babel src/ --out-dir lib --watch",
-    "snowpack": "npx snowpack",
+    "snowpack": "npx snowpack --include \"src/**/*.js\"",
     "servor": "npx servor . index.html 5000"
   },
   "author": "",
@@ -20,6 +20,7 @@
     "@babel/preset-react": "^7.7.4",
     "@material-ui/styles": "^4.9.0",
     "classnames-es": "^2.2.6",
+    "color": "^3.1.2",
     "gsap": "^3.1.1",
     "react": "npm:@reactesm/react@^0.1.0",
     "react-dom": "npm:@reactesm/react-dom@^0.1.1",
@@ -28,5 +29,16 @@
   },
   "devDependencies": {
     "snowpack": "^1.0.2"
+  },
+  "snowpack": {
+    "webDependencies": [
+      "@material-ui/*",
+      "classnames-es",
+      "gsap",
+      "react",
+      "react-dom",
+      "react-router-dom",
+      "color"
+    ]
   }
 }

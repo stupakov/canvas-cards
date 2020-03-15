@@ -11,7 +11,7 @@ export default function (canvas) {
   let context = prepareCanvas(canvas, width, height)
 
   // Backgrounds
-  const bgcolor = rgb(0.7, 0.9, 1)
+  const bgcolor = rgb(0.7, 0.9, 1).string()
   context.fillStyle = bgcolor
   context.fillRect(0, 0, width, height)
 
@@ -22,7 +22,7 @@ export default function (canvas) {
 
 function vignette (context, centerX, centerY) {
   for (let i = 350; i > 0; i--) {
-    context.fillStyle = rgb(0.2, 0.9 - i / 600, 1 - i / 700)
+    context.fillStyle = rgb(0.2, 0.9 - i / 600, 1 - i / 700).string()
     let radius = i
     context.beginPath()
     context.arc(centerX, centerY, radius, 0, Math.PI * 2)
@@ -43,7 +43,7 @@ const branches = (context, startX, startY) => {
     )(() => {
       spiral({
         context,
-        strokeStyle: i => rgb(0.9, 0.9 - i / 500, 1 - i / 200),
+        strokeStyle: i => rgb(0.9, 0.9 - i / 500, 1 - i / 200).string(),
         v: 0.5,
         omega: Math.PI / 200,
         segments: 800
@@ -56,7 +56,8 @@ const branches = (context, startX, startY) => {
     )(() => {
       spiral({
         context,
-        strokeStyle: i => rgb(0.2 + i / 1900, 0.7 - i / 900, 0.9 - i / 900),
+        strokeStyle: i =>
+          rgb(0.2 + i / 1900, 0.7 - i / 900, 0.9 - i / 900).string(),
         v: 0.35,
         omega: -Math.PI / 160,
         segments: 900
@@ -65,7 +66,8 @@ const branches = (context, startX, startY) => {
 
     spiral({
       context,
-      strokeStyle: i => rgb(0.9 - i / 200, 0.8 - i / 400, 0.9 - i / 500),
+      strokeStyle: i =>
+        rgb(0.9 - i / 200, 0.8 - i / 400, 0.9 - i / 500).string(),
       v: 0.8,
       omega: -Math.PI / 160,
       segments: 800

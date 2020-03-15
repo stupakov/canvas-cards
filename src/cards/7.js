@@ -27,8 +27,8 @@ const draw = ({ context, width, height }) => {
     y4 = vertexGroups[4][4].y
 
   // Backgrounds
-  // const bgcolor = rgba(0.9, 0.7, 1, 0.06)
-  const bgcolor = rgb(0.9, 0.7, 1)
+  // const bgcolor = rgba(0.9, 0.7, 1, 0.06).string()
+  const bgcolor = rgb(0.9, 0.7, 1).string()
   context.fillStyle = bgcolor
   context.fillRect(0, 0, width, height)
 
@@ -128,7 +128,7 @@ const sphere = (context, centerX, centerY, maxRadius = 200) => {
     0
   )(() => {
     for (let i = maxRadius; i > 0; i--) {
-      context.fillStyle = gradients[0](i / maxRadius)
+      context.fillStyle = gradients[0](i / maxRadius).string()
       let radius = i
       context.beginPath()
       context.arc(
@@ -149,14 +149,14 @@ const line = (context, x0, y0, x1, y1) => {
     context.moveTo(x0, y0)
     context.lineTo(x1, y1)
     context.lineWidth = i
-    context.strokeStyle = rgba(0.1, 0.2, 0.4, 0.17)
+    context.strokeStyle = rgba(0.1, 0.2, 0.4, 0.17).string()
     context.lineCap = 'round'
     context.stroke()
   }
 }
 
 const dot = (context, centerX, centerY) => {
-  context.fillStyle = rgb(1, 0, 0)
+  context.fillStyle = rgb(1, 0, 0).string()
   let radius = 5
   context.beginPath()
   context.arc(centerX, centerY + radius * 0.3, radius, 0, Math.PI * 2)

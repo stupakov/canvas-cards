@@ -27,7 +27,7 @@ const drawGradient = (canvas, fn) => {
   let context = prepareCanvas(canvas, width, height)
 
   for (let i = 0; i < width; i++) {
-    context.fillStyle = fn(i / width)
+    context.fillStyle = fn(i / width).string()
     context.fillRect(i, 0, 1, height)
   }
 }
