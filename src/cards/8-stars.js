@@ -1,23 +1,45 @@
 import { themes, gradients, rgb } from '../common/colors.js'
 import { drawAt } from '../common/drawing.js'
 
-const getInitialState = ({ width, height }) => ({
-  time: 0,
-  stars: generateStars({ width, height, count: 100 })
-})
+const getInitialState = ({ width, height }) => {
+  const density = 700
 
-const initAnimation = ({ gsap, state }) => {}
+  return {
+    time: 0,
+    stars: generateStars({
+      width,
+      height,
+      count: Math.floor((width * height) / density)
+    })
+  }
+}
+
+const initAnimation = ({ gsap, state }) => {
+  const start = new Date()
+
+  const updateTime = () => {
+    let now = new Date()
+    state.time = now - start
+  }
+
+  gsap.ticker.add(updateTime)
+}
 
 const draw = ({ context, width, height, state }) => {
-  let { stars } = state
+  let { stars, time } = state
+  const twinkle = 0.6
 
   const bgcolor = themes['geo'][0].string()
   context.fillStyle = bgcolor
   context.fillRect(0, 0, width, height)
 
-  stars.forEach(star =>
-    drawGradientSphere(context, star.x, star.y, star.radius)
-  )
+  stars.forEach(star => {
+    const radius =
+      star.radius * 1 +
+      twinkle * Math.sin((2 * Math.PI * time) / 1000 / star.period)
+
+    return drawGradientSphere(context, star.x, star.y, radius)
+  })
 }
 
 // const drawStar = (context, centerX, centerY, radius) => {
@@ -57,13 +79,14 @@ const drawGradientSphere = (context, centerX, centerY, maxRadius) => {
 }
 
 const generateStars = ({ width, height, count }) => {
-  const maxRadius = 5
+  const maxRadius = 3
 
   return Array.from(Array(count)).map(i => {
     const x = rangeRand(0, width)
     const y = rangeRand(0, height)
     const radius = rangeRand(0, maxRadius) // linear distribution of radii
-    return { x, y, radius }
+    const period = rangeRand(2, 5)
+    return { x, y, radius, period }
   })
 }
 
