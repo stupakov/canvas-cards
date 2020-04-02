@@ -5,7 +5,6 @@ const getInitialState = ({ width, height }) => {
   const density = 1 / 1000
 
   return {
-    time: 0,
     stars: generateStars({
       width,
       height,
@@ -14,19 +13,11 @@ const getInitialState = ({ width, height }) => {
   }
 }
 
-const initAnimation = ({ gsap, state }) => {
-  const start = new Date()
+const initAnimation = ({ gsap, state }) => {}
 
-  const updateTime = () => {
-    let now = new Date()
-    state.time = now - start
-  }
-
-  gsap.ticker.add(updateTime)
-}
-
-const draw = ({ context, width, height, state }) => {
-  let { stars, time } = state
+const draw = ({ context, width, height, state, getCurrentTime }) => {
+  const { stars } = state
+  const time = getCurrentTime()
   const twinkle = 0.8
 
   const bgcolor = themes['geo'][0].string()

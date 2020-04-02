@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import classNames from 'classnames-es'
 import { prepareCanvas } from '../common/drawing.js'
-
+import { initTimeCounter } from '../common/animation.js'
 import { gsap } from 'gsap'
 
 const AnimatedCard = ({ draw, getInitialState, initAnimation, name }) => {
@@ -14,14 +14,15 @@ const AnimatedCard = ({ draw, getInitialState, initAnimation, name }) => {
   useEffect(() => {
     canvas = document.getElementById(name)
     let context = prepareCanvas(canvas, width, height)
+    const getCurrentTime = initTimeCounter()
 
     initAnimation({ gsap, state })
 
     gsap.ticker.add(() => {
-      draw({ context, width, height, state })
+      draw({ context, width, height, state, getCurrentTime })
     })
 
-    draw({ context, width, height, state })
+    draw({ context, width, height, state, getCurrentTime })
   })
 
   return (

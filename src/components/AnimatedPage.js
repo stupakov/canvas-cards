@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { prepareCanvas } from '../common/drawing.js'
-
+import { initTimeCounter } from '../common/animation.js'
 import { gsap } from 'gsap'
 
 const AnimatedPage = ({ animations, name }) => {
@@ -8,10 +8,9 @@ const AnimatedPage = ({ animations, name }) => {
     gsap.ticker.fps(30)
 
     let canvas = document.getElementById(name)
-    let width
-    let height
-    let state
-    let context
+    let width, height, state, context
+    
+    const getCurrentTime = initTimeCounter()
 
     const prepareAnimation = () => {
       width = window.innerWidth
@@ -30,7 +29,7 @@ const AnimatedPage = ({ animations, name }) => {
 
     gsap.ticker.add(() => {
       animations.forEach(animation =>
-        animation.draw({ context, width, height, state })
+        animation.draw({ context, width, height, state, getCurrentTime })
       )
     })
   })
