@@ -3,7 +3,7 @@ import { prepareCanvas } from '../common/drawing.js'
 
 import { gsap } from 'gsap'
 
-const AnimatedPage = ({ draw, getInitialState, initAnimation, name }) => {
+const AnimatedPage = ({ animations, name }) => {
   useEffect(() => {
     gsap.ticker.fps(30)
 
@@ -16,16 +16,22 @@ const AnimatedPage = ({ draw, getInitialState, initAnimation, name }) => {
     const prepareAnimation = () => {
       width = window.innerWidth
       height = window.innerHeight
-      state = getInitialState({ width, height })
+      state = Object.assign(
+        ...animations.map(animation =>
+          animation.getInitialState({ width, height })
+        )
+      )
       context = prepareCanvas(canvas, width, height)
-      initAnimation({ gsap, state })
+      animations.forEach(animation => animation.initAnimation({ gsap, state }))
     }
 
     window.addEventListener('resize', prepareAnimation, false)
     prepareAnimation()
 
     gsap.ticker.add(() => {
-      draw({ context, width, height, state })
+      animations.forEach(animation =>
+        animation.draw({ context, width, height, state })
+      )
     })
   })
 

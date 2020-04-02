@@ -1,4 +1,5 @@
 function prepareCanvas (canvas, width, height) {
+  // 2x scale to increase resolution for retina displays
   canvas.width = width * 2
   canvas.height = height * 2
   canvas.style.width = `${width}px`

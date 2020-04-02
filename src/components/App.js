@@ -11,6 +11,8 @@ import four from '../cards/4.js'
 import five from '../cards/5.js'
 import six from '../cards/6.js'
 import stars from '../cards/8-stars.js'
+import geoForeground from '../cards/9-geo-foreground.js'
+import geoBackground from '../cards/10-geo-background.js'
 
 const App = () => (
   <Router>
@@ -20,7 +22,7 @@ const App = () => (
       </Route>
 
       <Route path='/geo'>
-        <AnimatedPage {...stars} name='stars' />
+        <AnimatedPage animations={[geoBackground, geoForeground]} name='geo' />
       </Route>
 
       <Route path='/'>
