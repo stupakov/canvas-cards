@@ -1,15 +1,15 @@
-import { themes, gradients, rgb } from '../common/colors.js'
+import { themes, rgb } from '../common/colors.js'
 import { drawAt } from '../common/drawing.js'
 
 const getInitialState = ({ width, height }) => {
-  const density = 700
+  const density = 1 / 1000
 
   return {
     time: 0,
     stars: generateStars({
       width,
       height,
-      count: Math.floor((width * height) / density)
+      count: Math.floor(width * height * density)
     })
   }
 }
@@ -27,7 +27,7 @@ const initAnimation = ({ gsap, state }) => {
 
 const draw = ({ context, width, height, state }) => {
   let { stars, time } = state
-  const twinkle = 0.6
+  const twinkle = 0.8
 
   const bgcolor = themes['geo'][0].string()
   context.fillStyle = bgcolor

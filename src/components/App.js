@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import CanvasCard from './CanvasCard.js'
 import AnimatedCard from './AnimatedCard.js'
+import AnimatedPage from './AnimatedPage.js'
 import Colors from './Colors.js'
 import one from '../cards/1.js'
 import two from '../cards/2.js'
@@ -16,6 +17,10 @@ const App = () => (
     <Switch>
       <Route path='/colors'>
         <Colors />
+      </Route>
+
+      <Route path='/geo'>
+        <AnimatedPage {...stars} name='stars' />
       </Route>
 
       <Route path='/'>

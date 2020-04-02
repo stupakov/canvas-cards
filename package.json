@@ -32,7 +32,7 @@
   },
   "snowpack": {
     "webDependencies": [
-      "@material-ui/*",
+      "@material-ui/styles",
       "classnames-es",
       "gsap",
       "react",
