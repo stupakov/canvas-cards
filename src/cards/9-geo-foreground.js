@@ -1,5 +1,5 @@
 import { rgb, rgba, gradients } from '../common/colors.js'
-import { drawAt } from '../common/drawing.js'
+import { drawAt, drawRotated } from '../common/drawing.js'
 
 const getVertices = (points, radius) =>
   points == 1
@@ -317,7 +317,7 @@ const initAnimation = ({ gsap, state }) => {
   // tl.to(state, { y2: vertexGroups[2][2].y, duration: 1 }, 1)
 }
 
-const draw = ({ context, width, height, state }) => {
+const draw = ({ context, width, height, state, getCurrentTime }) => {
   let {
     introProgress,
     fadeProgress,
@@ -333,115 +333,79 @@ const draw = ({ context, width, height, state }) => {
     y4
   } = state
 
+  const time = getCurrentTime()
+
+  const rotationFrequency = 1 / 16
+  const theta = (2 * Math.PI * rotationFrequency * time) / 1000
+
   const maxRadius = Math.min(width, height)
   const minRadius = 20
 
   let radius = maxRadius - (maxRadius - minRadius) * introProgress
   let opacity = 0.1 + 0.9 * introProgress
 
-  // Backgrounds
-  // const bgcolor = rgba(0.9, 0.7, 1, 0.06).string()
-  // const bgcolor = rgb(0.9, 0.7, 1).string()
-  // context.fillStyle = bgcolor
-  // context.fillRect(0, 0, width, height)
-
-  // Draw some stuff
-  // gradientSphere(context, width / 2, height / 2)
-  // dot(context, width / 2, height / 2)
-  // blurredCircle(context, width / 2, height / 2)
-
-  // console.log({ x1, y1 })
-
-  let lastLine = () => {}
-  if (x1 || y1) {
-    line(
-      context,
-      width / 2 + x0,
-      height / 2 + y0,
-      width / 2 + x1,
-      height / 2 + y1
-    )
-  }
-  if (x2 || y2) {
-    line(
-      context,
-      width / 2 + x1,
-      height / 2 + y1,
-      width / 2 + x2,
-      height / 2 + y2
-    )
-    lastLine = () =>
-      line(
-        context,
-        width / 2 + x2,
-        height / 2 + y2,
-        width / 2 + x0,
-        height / 2 + y0
-      )
-  }
-  if (x3 || y3) {
-    line(
-      context,
-      width / 2 + x2,
-      height / 2 + y2,
-      width / 2 + x3,
-      height / 2 + y3
-    )
-    lastLine = () =>
-      line(
-        context,
-        width / 2 + x3,
-        height / 2 + y3,
-        width / 2 + x0,
-        height / 2 + y0
-      )
-  }
-  if (x4 || y4) {
-    line(
-      context,
-      width / 2 + x3,
-      height / 2 + y3,
-      width / 2 + x4,
-      height / 2 + y4
-    )
-    lastLine = () =>
-      line(
-        context,
-        width / 2 + x4,
-        height / 2 + y4,
-        width / 2 + x0,
-        height / 2 + y0
-      )
-  }
-  lastLine()
-
-  if (introProgress < 1) {
-    sphere(context, width / 2 + x0, height / 2 + y0, radius, opacity)
-  } else {
-    if (fadeProgress < 1) {
-      context.save()
-      context.globalAlpha = 1 - fadeProgress
-      sphere(context, width / 2 + x0, height / 2 + y0, radius, opacity)
-      context.restore()
+  const drawLines = () => {
+    let lastLine = () => {}
+    if (x1 || y1) {
+      line(context, x0, y0, x1, y1)
     }
+    if (x2 || y2) {
+      line(context, x1, y1, x2, y2)
+      lastLine = () => line(context, x2, y2, x0, y0)
+    }
+    if (x3 || y3) {
+      line(context, x2, y2, x3, y3)
+      lastLine = () => line(context, x3, y3, x0, y0)
+    }
+    if (x4 || y4) {
+      line(context, x3, y3, x4, y4)
+      lastLine = () => line(context, x4, y4, x0, y0)
+    }
+    lastLine()
+  }
 
-    context.save()
-    context.globalAlpha = fadeProgress
-    gradientSphere(context, width / 2 + x0, height / 2 + y0)
-    context.restore()
-  }
-  if (x1 || y1) {
-    gradientSphere(context, width / 2 + x1, height / 2 + y1)
-  }
-  if (x2 || y2) {
-    gradientSphere(context, width / 2 + x2, height / 2 + y2)
-  }
-  if (x3 || y3) {
-    gradientSphere(context, width / 2 + x3, height / 2 + y3)
-  }
-  if (x4 || y4) {
-    gradientSphere(context, width / 2 + x4, height / 2 + y4)
-  }
+  drawAt(
+    context,
+    width / 2,
+    height / 2,
+    0
+  )(() => {
+    if (introProgress < 1) {
+      sphere(context, 0, 0, radius, opacity)
+    } else {
+      if (fadeProgress < 1) {
+        context.save()
+        context.globalAlpha = 1 - fadeProgress
+        sphere(context, x0, y0, radius, opacity)
+        context.restore()
+
+        context.save()
+        context.globalAlpha = fadeProgress
+        gradientSphere(context, x0, y0)
+        context.restore()
+      } else {
+        drawRotated(
+          context,
+          theta
+        )(() => {
+          drawLines()
+          gradientSphere(context, x0, y0)
+          if (x1 || y1) {
+            gradientSphere(context, x1, y1)
+          }
+          if (x2 || y2) {
+            gradientSphere(context, x2, y2)
+          }
+          if (x3 || y3) {
+            gradientSphere(context, x3, y3)
+          }
+          if (x4 || y4) {
+            gradientSphere(context, x4, y4)
+          }
+        })
+      }
+    }
+  })
 
   // getVertices(5, 100).forEach(coords => {
   //   gradientSphere(context, width / 2 + coords.x + x, height / 2 + coords.y + y)
@@ -499,7 +463,7 @@ const sphere = (context, centerX, centerY, radius = 20, opacity = 1) => {
 }
 
 const line = (context, x0, y0, x1, y1) => {
-  for (let i = 7; i > 0; i--) {
+  for (let i = 5; i > 0; i--) {
     context.beginPath()
     context.moveTo(x0, y0)
     context.lineTo(x1, y1)
