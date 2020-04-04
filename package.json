@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "babel src/ --out-dir lib --watch",
-    "snowpack": "npx snowpack --include \"src/**/*.js\"",
-    "servor": "npx servor . index.html 5000"
+    "dev": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -24,21 +23,9 @@
     "gsap": "^3.1.1",
     "react": "npm:@reactesm/react@^0.1.0",
     "react-dom": "npm:@reactesm/react-dom@^0.1.1",
-    "react-router-dom": "^5.1.2",
-    "serve": "^11.3.0"
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
-    "snowpack": "^1.0.2"
-  },
-  "snowpack": {
-    "webDependencies": [
-      "@material-ui/styles",
-      "classnames-es",
-      "gsap",
-      "react",
-      "react-dom",
-      "react-router-dom",
-      "color"
-    ]
+    "parcel-bundler": "^1.12.4"
   }
 }

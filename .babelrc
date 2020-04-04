@@ -1,8 +1,14 @@
 {
   "plugins": [
-    ["@babel/plugin-transform-react-jsx"],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }],
-    ["snowpack/assets/babel-plugin.js", {}]
+    [
+      "@babel/plugin-transform-react-jsx"
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ]
   ],
   "presets": [
     "@babel/react",
