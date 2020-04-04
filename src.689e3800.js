@@ -243,4 +243,4 @@ var e=require("./conversions"),n=require("./route"),r={},o=Object.keys(e);functi
 },{"react":"iGdO","react-router-dom":"rx6s","./CanvasCard.js":"IJ7b","./AnimatedCard.js":"qdG5","./AnimatedPage.js":"Gfob","./Colors.js":"qbF7","../cards/1.js":"fpvA","../cards/2.js":"GQf6","../cards/3.js":"IcaU","../cards/4.js":"IKsr","../cards/5.js":"Wa3Z","../cards/6.js":"Ja2n","../cards/8-stars.js":"LRDB","../cards/9-geo-foreground.js":"hzDR","../cards/10-geo-background.js":"D1ce"}],"H99C":[function(require,module,exports) {
 "use strict";var e=u(require("react")),t=u(require("react-dom")),r=u(require("./components/App.js"));function u(e){return e&&e.__esModule?e:{default:e}}t.default.render(e.default.createElement(r.default,null),document.getElementById("root"));
 },{"react":"iGdO","react-dom":"u1IQ","./components/App.js":"V6oR"}]},{},["H99C"], null)
-//# sourceMappingURL=canvas-cards/src.689e3800.js.map
+//# sourceMappingURL=/src.689e3800.js.map
