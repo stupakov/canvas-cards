@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import CanvasCard from './CanvasCard.js'
 import AnimatedCard from './AnimatedCard.js'
 import AnimatedPage from './AnimatedPage.js'
