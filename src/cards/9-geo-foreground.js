@@ -1,5 +1,8 @@
-import { rgb, rgba, gradients } from '../common/colors.js'
+import { rgb, rgba, gradients, themes } from '../common/colors.js'
 import { drawAt, drawRotated } from '../common/drawing.js'
+
+const sphereRadius = 15
+const formationRadius = 55
 
 const getVertices = (points, radius) =>
   points == 1
@@ -9,7 +12,9 @@ const getVertices = (points, radius) =>
         y: -radius * Math.cos((Math.PI * 2 * idx) / points)
       }))
 
-const vertexGroups = [...Array(5).keys()].map(n => getVertices(n + 1, 100))
+const vertexGroups = [...Array(5).keys()].map(n =>
+  getVertices(n + 1, formationRadius)
+)
 
 const getInitialState = () => ({
   introProgress: 0,
@@ -60,8 +65,8 @@ const initAnimation = ({ gsap, state }) => {
   // tl.to(state, { x2: vertexGroups[2][2].x, duration: 1 }, 1)
   // tl.to(state, { y2: vertexGroups[2][2].y, duration: 1 }, 1)
 
-  const introDuration = 4
-  const fadeDuration = 1
+  const introDuration = 5
+  const fadeDuration = 2
 
   tl.set(
     state,
@@ -339,7 +344,7 @@ const draw = ({ context, width, height, state, getCurrentTime }) => {
   const theta = (2 * Math.PI * rotationFrequency * time) / 1000
 
   const maxRadius = Math.min(width, height)
-  const minRadius = 20
+  const minRadius = sphereRadius
 
   let radius = maxRadius - (maxRadius - minRadius) * introProgress
   let opacity = 0.1 + 0.9 * introProgress
@@ -416,7 +421,7 @@ const gradientSphere = (
   context,
   centerX,
   centerY,
-  maxRadius = 20,
+  maxRadius = sphereRadius,
   opacity = 1
 ) => {
   const yOffset = -0.3 // between -1 and 1
@@ -444,7 +449,13 @@ const gradientSphere = (
   })
 }
 
-const sphere = (context, centerX, centerY, radius = 20, opacity = 1) => {
+const sphere = (
+  context,
+  centerX,
+  centerY,
+  radius = sphereRadius,
+  opacity = 1
+) => {
   context.save()
   var initialAlpha = context.globalAlpha
   context.globalAlpha = opacity * initialAlpha

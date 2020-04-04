@@ -29,10 +29,10 @@ const gradients = [
   i => rgb(i, i, i)
 ]
 
-const geoNavy = Color('#00225e')
-const geoGreen = Color('#005c0d')
-const geoGold = Color('#f7df00')
-const geoMaroon = Color('#4e067d')
+const geoNavy = Color('#00223e')
+const geoGreen = Color('#00401d')
+const geoGold = Color('#c79f40')
+const geoMaroon = Color('#6e064d')
 // const geoBlue = Color('00399c')
 
 const themes = {
