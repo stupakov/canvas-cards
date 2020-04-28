@@ -261,6 +261,27 @@ button.update:hover {
 }
 
 /* Covers */
+
+.gallery-item.stars {
+  background: #02233d;
+}
+
+.gallery-item.six {
+  background: #479cc9;
+}
+
+.gallery-item.five {
+  background: #563882;
+}
+
+.gallery-item.three {
+  background: #366c94;
+}
+
+.gallery-item.two {
+  background: #b39dcd;
+}
+
 .gallery-item.one {
-  background: #eeb600;
+  background: #429753;
 }

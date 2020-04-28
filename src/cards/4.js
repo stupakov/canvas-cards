@@ -34,8 +34,8 @@ const stroke1 = i => rgb(0, 0, 0).string()
 const stroke2 = stroke1
 
 export default function (canvas) {
-  const width = 455
-  const height = width
+  const width = 300
+  const height = 500
   let context = prepareCanvas(canvas, width, height)
 
   // Backgrounds
