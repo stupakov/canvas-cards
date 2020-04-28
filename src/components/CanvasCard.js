@@ -12,9 +12,6 @@ const CanvasCard = ({ fn, name }) => {
   return (
     <div className={classNames('gallery-item', name)}>
       <div class='container'>
-        <div class='description'>
-          <h2>{name}</h2>
-        </div>
         <div class='item'>
           <div class='card front'>
             <canvas id={name} data-name={name}></canvas>
