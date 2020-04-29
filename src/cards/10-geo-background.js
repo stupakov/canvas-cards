@@ -18,7 +18,7 @@ const initAnimation = ({ gsap, state }) => {}
 const draw = ({ context, width, height, state, getCurrentTime }) => {
   const { stars } = state
   const time = getCurrentTime()
-  const twinkle = 0.8
+  const twinkle = 1.05
 
   const bgcolor = themes['geo'][0].string()
   context.fillStyle = bgcolor
