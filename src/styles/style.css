@@ -260,6 +260,64 @@ button.update:hover {
   }
 }
 
+/* Geo */
+
+.page-container {
+  position: relative;
+}
+
+.page-container .header {
+  position: absolute;
+  height: 76px;
+  width: 100%;
+  background-color: rgba(20, 20, 30, 0.8);
+}
+
+.page-container .header .logo {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.page-container .header .logo img {
+  width: 36px;
+  display: inline-block;
+}
+
+.page-container .header .logo .logo-text {
+  font-family: 'Computer Modern Serif';
+  font-size: 2.7em;
+  line-height: 0.5em;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.page-container .footer {
+  font-family: 'Computer Modern Serif';
+  font-size: 1em;
+  line-height: 0.5em;
+  position: absolute;
+  height: 60px;
+  width: 100%;
+  background-color: rgba(20, 20, 30, 0.8);
+  bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.page-container .footer a {
+  color: white;
+}
+
+.page-container .footer .footer-left {
+  flex: 1;
+}
+
+.page-container .footer .footer-left,
+.footer-right {
+  padding: 18px;
+}
+
 /* Covers */
 
 .gallery-item.stars {
