@@ -16,9 +16,7 @@ const vertexGroups = [...Array(5).keys()].map(n =>
   getVertices(n + 1, formationRadius)
 )
 
-const getInitialState = () => ({
-  introProgress: 0,
-  fadeProgress: 0,
+const getInitialCoordinates = () => ({
   x0: 0,
   y0: 0,
   x1: 0,
@@ -30,6 +28,15 @@ const getInitialState = () => ({
   x4: 0,
   y4: 0
 })
+
+const getInitialState = () =>
+  Object.assign(
+    {
+      introProgress: 0,
+      fadeProgress: 0
+    },
+    getInitialCoordinates()
+  )
 
 const transitionPoints = ({ point, from, to, duration, at, state, tl }) => {
   tl.fromTo(
@@ -65,7 +72,7 @@ const initAnimation = ({ gsap, state }) => {
   // tl.to(state, { x2: vertexGroups[2][2].x, duration: 1 }, 1)
   // tl.to(state, { y2: vertexGroups[2][2].y, duration: 1 }, 1)
 
-  const introDuration = 5
+  const introDuration = 7
   const fadeDuration = 2
 
   tl.set(
@@ -248,6 +255,11 @@ const initAnimation = ({ gsap, state }) => {
     at: 4 + introDuration,
     state,
     tl
+  })
+
+  tl.call(() => {
+    tl.set(state, getInitialCoordinates(), introDuration)
+    tl.seek(introDuration)
   })
 
   // tl.fromTo(
